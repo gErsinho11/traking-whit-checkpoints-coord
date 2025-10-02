@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AuthModule } from './auth/auth.module';
 import { TrackingController } from './infrastructure/controllers/tracking.controller';
+import { HealthController } from './infrastructure/controllers/health.controller';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
@@ -19,7 +20,7 @@ import { ListShipmentsByStatusUseCase } from './application/use-cases/list-shipm
       signOptions: { expiresIn: '12h' },
     }),
   ],
-  controllers: [TrackingController],
+  controllers: [TrackingController, HealthController],
   providers: [
     // Repositories (DI)
     { provide: 'ShipmentRepository', useClass: InMemoryShipmentRepository },
