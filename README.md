@@ -43,7 +43,7 @@ npm test         # unit
 npm run test:e2e # integración
 ```
 
-## 🧱 Clean Architecture (resumen)
+## 🧱 Resumen de la arquitectura - estructura dek código
 - **domain**: entidades, VOs y **interfaces** de repositorio.
 - **application**: **use cases** puros que dependen de las interfaces.
 - **infrastructure**: adaptadores concretos (controllers, repos in-memory).
