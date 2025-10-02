@@ -7,6 +7,11 @@ export class JwtAuthGuard implements CanActivate {
 
   canActivate(context: ExecutionContext): boolean {
     const req = context.switchToHttp().getRequest();
+
+    if (req.path === '/health') {
+      return true;
+    }
+
     const auth = req.headers['authorization'] as string | undefined;
     if (!auth || !auth.startsWith('Bearer ')) throw new UnauthorizedException('Missing Bearer token');
     const token = auth.substring(7);
