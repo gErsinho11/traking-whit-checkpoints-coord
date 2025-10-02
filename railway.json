@@ -9,13 +9,9 @@
   },
   "env": {
     "NODE_ENV": "production",
-    "PORT": "3000",
     "JWT_SECRET": "super-secret-change-me",
     "NPM_CONFIG_PRODUCTION": "false"
   }
 }
-
-
-
 
 
