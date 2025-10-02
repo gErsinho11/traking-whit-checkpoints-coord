@@ -8,7 +8,7 @@ export class JwtAuthGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const req = context.switchToHttp().getRequest();
 
-    if (req.path === '/health') {
+    if (req.path === '/health' || req.path === '/healthz') {
       return true;
     }
 
