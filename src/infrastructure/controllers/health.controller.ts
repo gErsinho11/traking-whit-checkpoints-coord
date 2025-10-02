@@ -1,10 +1,9 @@
 import { Controller, Get } from '@nestjs/common';
 
-@Controller('healthz') // 👈 ruta fuera de prefix
+@Controller('healthz')
 export class HealthController {
-  @Get()
+  @Get('health')
   check() {
     return { status: 'ok', ts: new Date().toISOString() };
   }
 }
-
