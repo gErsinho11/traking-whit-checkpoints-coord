@@ -8,7 +8,7 @@
 "scripts": {
   "start": "nest start",
   "start:dev": "nest start --watch",
-  "build": "nest build",
+  "build": "tsc -p tsconfig.build.json",
   "start:prod": "node dist/main.js",
   "test": "jest --passWithNoTests",
   "test:e2e": "jest --config test/e2e/jest-e2e.json"
