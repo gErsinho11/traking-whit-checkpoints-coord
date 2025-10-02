@@ -1,0 +1,33 @@
+# fly.toml file for NestJS project
+app = "traking-whit-checkpoints-coord" # 👈 cámbialo si quieres otro nombre
+primary_region = "mia"                 # región (mia = Miami, puedes usar "gru" para São Paulo si está disponible)
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  PORT = "3000"
+  JWT_SECRET = "super-secret-change-me"
+  NPM_CONFIG_PRODUCTION = "false"
+
+[[services]]
+  internal_port = 3000
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+
+  [[services.http_checks]]
+    interval = "15s"
+    timeout = "2s"
+    grace_period = "10s"
+    method = "get"
+    path = "/healthz"   # 👈 tu endpoint de health
+    protocol = "http"
+    restart_limit = 3
