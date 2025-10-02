@@ -1,0 +1,40 @@
+{
+  "name": "traking-whit-checkpoints-coord",
+  "version": "1.0.0",
+  "description": "API de Tracking con Checkpoints (Etapa 1) - Clean Architecture - NestJS",
+  "author": "Candidato/a",
+  "license": "MIT",
+  "scripts": {
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "build": "nest build",
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watch",
+    "test:e2e": "jest --config test/e2e/jest-e2e.json",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/core": "^10.0.0",
+    "@nestjs/jwt": "^10.2.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.8.1",
+    "class-validator": "^0.14.0",
+    "class-transformer": "^0.5.1",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^10.0.0",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/supertest": "^2.0.16",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
