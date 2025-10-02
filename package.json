@@ -4,15 +4,16 @@
   "description": "API de Tracking con Checkpoints (Etapa 1) - Clean Architecture - NestJS",
   "author": "Candidato/a",
   "license": "MIT",
-  "scripts": {
-    "start": "nest start",
-    "start:dev": "nest start --watch",
-    "build": "nest build",
-    "test": "jest --passWithNoTests",
-    "test:watch": "jest --watch",
-    "test:e2e": "jest --config test/e2e/jest-e2e.json",
-    "lint": "eslint ."
-  },
+
+"scripts": {
+  "start": "nest start",
+  "start:dev": "nest start --watch",
+  "build": "nest build",
+  "start:prod": "node dist/main.js",
+  "test": "jest --passWithNoTests",
+  "test:e2e": "jest --config test/e2e/jest-e2e.json"
+},
+
   "dependencies": {
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
