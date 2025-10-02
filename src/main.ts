@@ -14,6 +14,7 @@ async function bootstrap() {
   await app.listen(port, '0.0.0.0');
   // await app.listen(process.env.PORT || 3000);
   // eslint-disable-next-line no-console
-  console.log(`Server running on http://localhost:${process.env.PORT || 3000}`);
+  // console.log(`Server running on http://localhost:${process.env.PORT || 3000}`);
+  console.log(`🚀 Server running on http://0.0.0.0:${port}`);
 }
 bootstrap();
