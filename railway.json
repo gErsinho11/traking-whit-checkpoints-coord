@@ -7,7 +7,7 @@
   "deploy": {
     "numReplicas": 1,
     "restartPolicyType": "ON_FAILURE",
-    "healthcheckPath": "/api/v1/health"
+    "healthcheckPath": "/health"
   },
   "env": {
     "NODE_ENV": "production",
