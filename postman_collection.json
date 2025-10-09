@@ -1,0 +1,190 @@
+{
+  "info": {
+    "_postman_id": "traking-whit-checkpoints-coord-collection",
+    "name": "traking-whit-checkpoints-coord",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/healthz",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "healthz"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/auth/login",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api","v1","auth","login"
+          ]
+        }
+      ,
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Guardar el access_token en la variable de entorno 'auth_token'",
+              "if (pm.response.code === 201 || pm.response.code === 200) {",
+              "  var json = pm.response.json();",
+              "  if (json && json.access_token) {",
+              "    pm.environment.set('auth_token', json.access_token);",
+              "    console.log('auth_token guardado');",
+              "  } else {",
+              "    console.warn('access_token no encontrado en la respuesta');",
+              "  }",
+              "} else {",
+              "  console.warn('Login falló con status ' + pm.response.code);",
+              "}"
+            ]
+          }
+        }
+      ]
+      }
+    },
+    {
+      "name": "Get Tracking",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/tracking/TST-0001",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api","v1","tracking","TST-0001"
+          ]
+        }
+      ,
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Añadir Authorization si auth_token está en el entorno",
+              "var t = pm.environment.get('auth_token');",
+              "if (t) {",
+              "  pm.request.headers.add({ key: 'Authorization', value: 'Bearer ' + t });",
+              "}"
+            ]
+          }
+        }
+      ]
+      }
+    },
+    {
+      "name": "List Shipments",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/shipments?status=CREATED",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api","v1","shipments"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "CREATED"
+            }
+          ]
+        }
+      ,
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "var t = pm.environment.get('auth_token');",
+              "if (t) {",
+              "  pm.request.headers.add({ key: 'Authorization', value: 'Bearer ' + t });",
+              "}"
+            ]
+          }
+        }
+      ]
+      }
+    },
+    {
+      "name": "Register Checkpoint",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"trackingId\": \"TST-0001\",\n  \"status\": \"IN_TRANSIT\",\n  \"location\": \"Bogota\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/checkpoints",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api","v1","checkpoints"
+          ]
+        }
+      ,
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "var t = pm.environment.get('auth_token');",
+              "if (t) {",
+              "  pm.request.headers.add({ key: 'Authorization', value: 'Bearer ' + t });",
+              "}"
+            ]
+          }
+        }
+      ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://traking-whit-checkpoints-coord.onrender.com",
+      "type": "string"
+    }
+  ]
+}

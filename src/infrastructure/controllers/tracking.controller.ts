@@ -6,7 +6,7 @@ import { CreateCheckpointDto } from '../dtos/create-checkpoint.dto';
 import { ShipmentsQueryDto } from '../dtos/shipments-query.dto';
 import { ShipmentStatus } from '../../domain/value-objects/status';
 
-@Controller('api/v1')
+@Controller()
 export class TrackingController {
   constructor(
     private readonly registerUC: RegisterCheckpointUseCase,
