@@ -8,7 +8,9 @@ export class JwtAuthGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const req = context.switchToHttp().getRequest();
 
-    if (req.path === '/health' || req.path === '/healthz') {
+    // Allow health checks and the login endpoint to be public
+    const publicPaths = ['/health', '/healthz'];
+    if (publicPaths.includes(req.path) || req.path.endsWith('/auth/login')) {
       return true;
     }
 
